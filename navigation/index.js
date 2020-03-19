@@ -1,38 +1,40 @@
 import { createAppContainer, createStackNavigator, createSwitchNavigator } from 'react-navigation';
-import Login from "../Screens/Login";
-import Welcome from "../Screens/Welcome";
-import UserOrGym from "../Screens/UserOrGym";
-import RegistUsers from "../Screens/RegistUsers";
-import RegistGyms from "../Screens/RegistGyms";
-import WelcomeGym from "../Screens/WelcomeGym";
-import LoginGyms from '../Screens/LoginGyms';
-import Maps from '../Screens/Map';
+import { AdminScreen, BoxInPoints, ChangePassword, ChargeForGym, ChargeForPlayer, Detalis, diactivedgym, DtailsForSetWorkTime, OnClassSet, PassswordUsers, PasswordGyms, Rewards, RForGym, RforUser, SetLocation, WorkTime, WorkTimeListView } from '../Screens/Admins/index';
 import Charge from '../Screens/Charge';
-import Profile from '../Screens/Profile';
-import GymProfile from '../Screens/GymProfile';
-import GymDetails from '../Screens/GymDetails';
-import Registting from '../Screens/RegistGym2';
-import HistoryForGyms from '../Screens/HistoryForGyms';
-import RegistUserss from '../Screens/RegistUser2';
-import LoadingScreen from '../Screens/LoadingScreen';
 import ChargeFromGymToYfitness from '../Screens/ChargeFromGymToYfitness';
-import ChangeUserPassword from '../Screens/ChangePassword';
+import GymProfile from '../Screens/GymProfile';
+import HistoryForGyms from '../Screens/HistoryForGyms';
+import LoadingScreen from '../Screens/LoadingScreen';
+import Login from "../Screens/Login";
+import LoginGyms from '../Screens/LoginGyms';
+import Registting from '../Screens/RegistGym2';
+import RegistGyms from "../Screens/RegistGyms";
+import RegistUserss from '../Screens/RegistUser2';
+import RegistUsers from "../Screens/RegistUsers";
 import UserDetails from '../Screens/UserDetailsForCharge';
-import HistoryForUsers from '../Screens/HistoryForUsers';
-import YFitnessPage from '../Screens/YfitnessPage';
+import UserOrGym from "../Screens/UserOrGym";
+import Welcome from "../Screens/Welcome";
+import WelcomeGym from "../Screens/WelcomeGym";
 import User from './User';
-import {
-    AdminScreen, ChargeForGym, RForGym, Rewards, RforUser,
-    SetLocation, OnClassSet,
-    ChargeForPlayer,
-    ChangePassword,
-    Detalis,
-    PassswordUsers, PasswordGyms
-    , BoxInPoints, DtailsForSetWorkTime, WorkTime, diactivedgym,
-    WorkTimeListView
-} from '../Screens/Admins/index';
-const Auth = createStackNavigator({ UserOrGym, Welcome, Login, LoginGyms, RegistUsers, WelcomeGym, RegistUserss });
-const Gym = createStackNavigator({ GymProfile, HistoryForGyms, Charge, ChargeFromGymToYfitness, UserDetails })
+
+const Auth = createStackNavigator({
+    UserOrGym,
+    Welcome,
+    Login,
+    LoginGyms,
+    RegistUsers,
+    WelcomeGym,
+    RegistUserss
+});
+
+const Gym = createStackNavigator({
+    GymProfile,
+    HistoryForGyms,
+    Charge,
+    ChargeFromGymToYfitness,
+    UserDetails
+})
+
 const Admin = createStackNavigator({
     AdminScreen,
     ChargeForGym,
@@ -53,5 +55,13 @@ const Admin = createStackNavigator({
     RegistGyms, Registting,
     WorkTimeListView
 })
-const Main = createSwitchNavigator({ LoadingScreen, Auth, User, Gym, Admin },{headerTransparent: true})
+
+const Main = createSwitchNavigator({
+    LoadingScreen,
+    Auth,
+    User,
+    Gym,
+    Admin
+}, { headerTransparent: true })
+
 export default createAppContainer(Main);

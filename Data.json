@@ -1,0 +1,14 @@
+[
+    {
+        "_id":"4675",
+        "name": "phrose",
+        "price": 40,
+        "points": 100,
+        "adress": {
+            "longitude": -122.08400000000002,
+            "latitude": 37.421998333333335,
+            "latitudeDelta": 0.0922,
+            "longitudeDelta": 0.05550501672240803
+        }
+    }
+]

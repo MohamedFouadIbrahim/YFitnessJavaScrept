@@ -2,8 +2,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 import { ActivityIndicator, Image, View } from 'react-native';
 import Button from '../../components/Button';
-import { Fonts } from '../Fonts/insex';
-import backround from '../Photo/Logo.png';
+import backround from '../../Photo/Logo.png';
 import { HowIsMe } from '../../Service/ApplicationService';
 import { getToken } from '../../utlits/Application';
 
@@ -74,7 +73,9 @@ class Loading extends React.Component {
                             onPress={this.Init} />
                         <Button
                             style={{ backgroundColor: '#1a1a1a', padding: 10, marginTop: 330, width: 60 }}
-                            textStyle={{ alignSelf: 'center', color: 'black', fontFamily: Fonts.Helvetica, fontSize: 10 }} Text='Log out' onPress={() => { AsyncStorage.clear().then(() => { this.props.navigation.navigate('Auth') }) }}
+                            textStyle={{ alignSelf: 'center', color: 'black', fontSize: 10 }}
+                            Text='Log out'
+                            onPress={() => { AsyncStorage.clear().then(() => { this.props.navigation.navigate('Auth') }) }}
                         />
                     </View>
                 }

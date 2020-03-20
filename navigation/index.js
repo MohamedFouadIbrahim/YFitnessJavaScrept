@@ -4,7 +4,7 @@ import Charge from '../Screens/Charge';
 import ChargeFromGymToYfitness from '../Screens/ChargeFromGymToYfitness';
 import GymProfile from '../Screens/GymProfile';
 import HistoryForGyms from '../Screens/HistoryForGyms';
-import LoadingScreen from '../Screens/LoadingScreen';
+import LoadingScreen from '../containers/Splash/index';
 import Login from "../Screens/Login";
 import LoginGyms from '../Screens/LoginGyms';
 import Registting from '../Screens/RegistGym2';

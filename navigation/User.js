@@ -7,7 +7,7 @@ import Noti from '../Photo/Noti.png';
 import ChangeUserPassword from '../Screens/ChangePassword';
 import GymDetails from '../Screens/GymDetails';
 import HistoryForUsers from '../Screens/HistoryForUsers';
-import Maps from '../Screens/Map';
+import Maps from '../containers/Map';
 import Profile from '../Screens/Profile';
 import YFitnessPage from '../Screens/YfitnessPage';
 

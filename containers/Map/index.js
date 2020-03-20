@@ -55,7 +55,7 @@ class Map extends React.Component {
 
     render() {
 
-        const { didDataFetched, gyms, region } = this.state
+        const { didDataFetched, gyms, region, myInfo } = this.state
 
         if (!didDataFetched) {
             return <Loadding />
@@ -78,7 +78,7 @@ class Map extends React.Component {
                     }}
                     AllGyms={gyms}
                     onMarkerPress={(item) => {
-                        const Id = this.props.Info._id
+                        const { Id } = myInfo
                         if (item.name != '') {
                             this.props.navigation.navigate('GymDetails', {
                                 GymId: item._id,

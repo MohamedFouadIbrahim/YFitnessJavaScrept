@@ -44,7 +44,7 @@ class Loading extends React.Component {
                 })
 
             } else {
-                this.props.navigation.navigate('Auth')
+                // this.props.navigation.navigate('Auth')
                 return
             }
 

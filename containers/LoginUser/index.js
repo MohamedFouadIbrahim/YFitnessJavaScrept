@@ -1,14 +1,14 @@
 import React from 'react';
 import { ActivityIndicator, Keyboard, StyleSheet, View } from 'react-native';
 import Toast from 'react-native-easy-toast';
-import { Validate } from '../Actions/LoginUsers';
-import Button from '../Component/Button';
-import Input from '../Component/TextInput';
-import { LoginUser } from '../Service/UserService';
-import { setToken } from '../utlits/Application';
-import { Fonts } from '../Fonts/insex';
-import unlocked from '../Photo/unlocked.png';
-import user from '../Photo/user.png';
+import Button from '../../components/Button';
+import Input from '../../components/TextInput';
+import { LoginUser } from '../../Service/UserService';
+import { setToken } from '../../utlits/Application';
+import unlocked from '../../Photo/unlocked.png';
+import user from '../../Photo/user.png';
+import validator from 'validator';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class Login extends React.Component {
 
@@ -26,6 +26,9 @@ class Login extends React.Component {
 
     }
 
+    componentDidMount() { 
+        AsyncStorage.clear()
+    }
     static navigationOptions = {
         headerTransparent: true,
         headerTintColor: '#ffffbe'
@@ -41,38 +44,36 @@ class Login extends React.Component {
 
         const { Email, Password } = this.state
 
-        if (!Email || !Password) {
-            return this.refs.tost.show('Enter Email And Password')
+        if (!validator.isEmail(Email) || !Password) {
+            return this.refs.tost.show('Enter Valid Email And Password')
         }
 
-        Validate(this.props.Login, (e) => {
-            this.refs.tost.show(e)
-        }, () => {
-            const Data = {
-                Email: Email.toLocaleLowerCase(),
-                Password: Password
-            }
+        const Data = {
+            Email: Email.toLocaleLowerCase(),
+            Password: Password
+        }
 
-            this.setState({ lockSubmit: true })
-            this.lockSubmit = true
+        // console.log(Data)
 
-            LoginUser(Data, res => {
+        this.setState({ lockSubmit: true })
+        this.lockSubmit = true
 
-                this.setState({ lockSubmit: false })
-                this.lockSubmit = false
+        LoginUser(Data, res => {
 
-                setToken(res.data.token, () => {
-                    if (this.props.Login.Token && Data.Email == 'yfitness@yfitness.com') {
-                        this.props.navigation.navigate('Admin')
-                    } else {
-                        this.props.navigation.navigate('User')
-                    }
-                })
+            this.setState({ lockSubmit: false })
+            this.lockSubmit = false
 
-            }, err => {
-                this.setState({ lockSubmit: false })
-                this.lockSubmit = false
+            setToken(res.data.token, () => {
+                if (res.data.token && Data.Email == 'yfitness@yfitness.com') {
+                    this.props.navigation.navigate('Admin')
+                } else {
+                    this.props.navigation.navigate('User')
+                }
             })
+
+        }, err => {
+            this.setState({ lockSubmit: false })
+            this.lockSubmit = false
         })
 
     }
@@ -105,7 +106,6 @@ class Login extends React.Component {
                     />
                     {this.state.lockSubmit == true ? <ActivityIndicator size='large' color='#fcb72b' style={{ marginTop: 10 }} /> :
                         <Button
-                            textStyle={{ alignSelf: 'center', color: '#fcb72b', fontFamily: Fonts.Helvetica, fontSize: 20 }}
                             style={styles.Button}
                             Text='Login'
                             onPress={() => { this.onLogin() }}
@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
         borderBottomColor: '#fcb72b',
         borderBottomWidth: 0.2,
         fontSize: 20,
-        fontFamily: Fonts.Helvetica,
         width: '100%',
         color: '#fcb72b'
     },

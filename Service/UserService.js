@@ -1,6 +1,6 @@
 import { GET, POST } from '../utlits/Network'
 import Axios from 'axios';
-
+import { MainUrl } from '../Root';
 export const AcceptRequest = (data, onSuccess, onFailure) => {
     // ReqId, GymId, UserId, TransPoints,Type
     POST('Api/Requets/acceptrequest', data, res => {

@@ -2,13 +2,16 @@ import React from 'react';
 import { ActivityIndicator, Keyboard, StyleSheet, View } from 'react-native';
 import Toast from 'react-native-easy-toast';
 import { connect } from 'react-redux';
-import { Email, LoginUser, Password, Validate } from '../Actions/LoginUsers';
+import { Email, Password, Validate } from '../Actions/LoginUsers';
+import { LoginUser } from '../../Service/UserService';
+
 import Button from '../Component/Button';
 import Input from '../Component/TextInput';
 import { Fonts } from '../Fonts/insex';
 import unlocked from '../Photo/unlocked.png';
 import user from '../Photo/user.png';
 import AsyncStorage from '@react-native-community/async-storage';
+import { setToken } from '../../utlits/Application';
 class Login extends React.Component {
     static navigationOptions = {
         headerTransparent: true,
@@ -28,6 +31,15 @@ class Login extends React.Component {
                 Email: Email.toLocaleLowerCase(),
                 Password: Password
             }
+            LoginUser(Data, res => {
+                console.log(res)
+                setToken(res, () => {
+                    console.log('HaveSetied')
+                }, err => {
+                    console.log('NotHaveSetied')
+                })
+            })
+            return
             this.props.LoginUser(Data)
                 .then(() => {
                     if (this.props.Login.Token && Data.Email == 'yfitness@yfitness.com') {
@@ -81,7 +93,10 @@ class Login extends React.Component {
                         textStyle={{ alignSelf: 'center', color: '#fcb72b', fontFamily: Fonts.Helvetica, fontSize: 20 }}
                         style={styles.Button}
                         Text='Login'
-                        onPress={() => { this.onLogin() }}
+                        onPress={() => {
+                            // this.onLogin()
+                            alert('ok')
+                        }}
                     />
                 </View>
             </View>
@@ -107,4 +122,4 @@ const mapStateToProps = state => {
         Login: state.Login
     }
 }
-export default connect(mapStateToProps, { Email, Password, LoginUser })(Login)
+export default connect(mapStateToProps, { Email, Password, })(Login)

@@ -18,7 +18,7 @@ const Loadding = () => (
 class Map extends React.Component {
     constructor(props) {
         super(props)
-        this.loadMyInfo()
+        // this.loadMyInfo()
         this.state = {
             didDataFetched: false,
             gyms: [],
@@ -38,7 +38,7 @@ class Map extends React.Component {
     }
 
     componentDidMount() {
-
+        this.loadMyInfo()
         this.onMyPlace()
         GetAllGyms(res => {
             this.setState({ gyms: res.data, didDataFetched: true })
@@ -78,13 +78,13 @@ class Map extends React.Component {
                     }}
                     AllGyms={gyms}
                     onMarkerPress={(item) => {
-                        const { Id } = myInfo
+                        const { _id } = myInfo
                         if (item.name != '') {
                             this.props.navigation.navigate('GymDetails', {
                                 GymId: item._id,
                                 Name: item.Name,
                                 Points: item.OneClass,
-                                UserId: Id,
+                                UserId: _id,
                                 Man: item.Working.Man,
                                 Women: item.Working.Women,
                             })

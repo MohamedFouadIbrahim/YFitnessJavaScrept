@@ -9,20 +9,20 @@ export const getToken = (onSuccess, onFailure) => {
             return
         }
         onFailure && onFailure(null)
-    
-    }).catch((e)=>{
+
+    }).catch((e) => {
         onFailure && onFailure(e)
     })
-   
+
 }
 
-export const setToken = async (Token, onSuccess, onFailure) => {
+export const setToken = (Token, onSuccess, onFailure) => {
     AsyncStorage.setItem('token', Token)
         .then(() => {
             onSuccess && onSuccess()
         })
-        .catch(() => {
-            onFailure && onFailure()
+        .catch((e) => {
+            onFailure && onFailure(e)
         })
 }
 

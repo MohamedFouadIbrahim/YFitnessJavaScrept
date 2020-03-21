@@ -11,18 +11,7 @@ const HTTP_REQUEST = (method, endpoint, post_data, onSuccess, onFailure) => {
 			onSuccess && onSuccess(response)
 		
 		}).catch(function (error) {
-
-			if (error.response) {
-				onFailure && onFailure(error)
-			} else if (error.request) {
-				console.log("Error 0", error.request);
-				onFailure && onFailure(error);
-			} else {
-				// Something happened in setting up the request that triggered an Error
-				console.log("Error 1", error.message);
-				onFailure && onFailure(error);
-			}
-			console.log("Error 2", error.config);
+			onFailure && onFailure(error);
 		});
 }
 

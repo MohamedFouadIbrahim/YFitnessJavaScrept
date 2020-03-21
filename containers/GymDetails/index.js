@@ -23,7 +23,7 @@ class GymDetails extends React.Component {
 
     render() {
 
-        const { 
+        const {
             Name,
             Points,
             GymId,
@@ -76,7 +76,7 @@ class GymDetails extends React.Component {
                                     this.setState({ lockSubmit: true })
                                     this.lockSubmit = true
                                     RequetCardio({
-                                        GymId, UserId, TransPoints: Points, Type = 'Cardio'
+                                        GymId, UserId, TransPoints: Points, Type: 'Cardio'
                                     }, res => {
                                         this.props.navigation.navigate('Profile')
                                         this.setState({ lockSubmit: false })

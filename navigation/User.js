@@ -8,7 +8,7 @@ import ChangeUserPassword from '../Screens/ChangePassword';
 import GymDetails from '../containers/GymDetails';
 import HistoryForUsers from '../Screens/HistoryForUsers';
 import Maps from '../containers/Map';
-import Profile from '../Screens/Profile';
+import Profile from '../containers/UserProfile';
 import YFitnessPage from '../Screens/YfitnessPage';
 
 const MapStack = createStackNavigator({
